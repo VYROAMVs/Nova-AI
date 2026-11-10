@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09090f">
+  <meta name="description" content="A modern AI assistant for thinking, creating and exploring.">
+  <title>NOVA AI — Think Beyond</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app-shell">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <a class="brand" href="#">
+          <div class="brand-icon">
+            <span>✦</span>
+          </div>
+          <span class="brand-name">NOVA<span class="brand-ai"> AI</span></span>
+        </a>
+
+        <button class="icon-btn sidebar-close" id="closeSidebar" aria-label="Close sidebar">✕</button>
+      </div>
+
+      <button class="new-chat-btn" id="newChat">
+        <span>＋</span>
+        <span>New conversation</span>
+        <span class="shortcut">⌘ K</span>
+      </button>
+
+      <div class="sidebar-section">
+        <div class="section-heading">WORKSPACE</div>
+        <button class="nav-item active">
+          <span>◈</span> Chat
+        </button>
+        <button class="nav-item" id="exploreBtn">
+          <span>✧</span> Explore
+          <span class="coming-soon">SOON</span>
+        </button>
+      </div>
+
+      <div class="history-section">
+        <div class="history-heading">
+          <span>RECENT CHATS</span>
+          <span class="history-count" id="historyCount">0</span>
+        </div>
+        <div class="history-list" id="historyList">
+          <div class="empty-history">Your conversations will appear here.</div>
+        </div>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="plan-card">
+          <div class="plan-icon">✦</div>
+          <div>
+            <div class="plan-title">NOVA Preview</div>
+            <div class="plan-subtitle">Welcome to the future</div>
+          </div>
+          <span class="plan-dot"></span>
+        </div>
+
+        <button class="profile-btn" id="profileBtn">
+          <div class="avatar">U</div>
+          <div class="profile-info">
+            <span class="profile-name">Guest User</span>
+            <span class="profile-status">Free workspace</span>
+          </div>
+          <span class="profile-menu">···</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-area">
+
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-btn menu-btn" id="openSidebar" aria-label="Open sidebar">☰</button>
+          <div class="mobile-brand">NOVA <span>AI</span></div>
+          <div class="model-selector-wrap">
+            <button class="model-selector" id="modelButton">
+              <span class="model-status"></span>
+              <span id="selectedModel">NOVA Smart</span>
+              <span class="chevron">⌄</span>
+            </button>
+
+            <div class="model-dropdown hidden" id="modelDropdown">
+              <div class="dropdown-label">SELECT MODEL</div>
+              <button class="model-option selected" data-model="NOVA Smart">
+                <span class="option-icon">✦</span>
+                <span>
+                  <strong>NOVA Smart</strong>
+                  <small>Balanced intelligence</small>
+                </span>
+                <span class="option-check">✓</span>
+              </button>
+              <button class="model-option" data-model="NOVA Reasoning">
+                <span class="option-icon">◈</span>
+                <span>
+                  <strong>NOVA Reasoning</strong>
+                  <small>Advanced reasoning · Planned</small>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="demo-badge"><span></span> PREVIEW MODE</div>
+          <button class="icon-btn" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">☼</button>
+        </div>
+      </header>
+
+      <div class="chat-viewport" id="chatViewport">
+
+        <!-- WELCOME SCREEN -->
+        <section class="welcome-screen" id="welcomeScreen">
+
+          <div class="welcome-orb">
+            <div class="orb-ring ring-one"></div>
+            <div class="orb-ring ring-two"></div>
+            <div class="orb-core">✦</div>
+          </div>
+
+          <div class="welcome-label">
+            <span class="welcome-line"></span>
+            YOUR AI, REIMAGINED
+            <span class="welcome-line"></span>
+          </div>
+
+          <h1>Think beyond<br><span>the ordinary.</span></h1>
+
+          <p class="welcome-description">
+            Ideas, questions, possibilities. Start a conversation
+            and discover what you can create.
+          </p>
+
+          <div class="suggestion-grid">
+            <button class="suggestion-card" data-prompt="Explain how artificial intelligence works in simple words.">
+              <div class="suggestion-icon purple">✧</div>
+              <div class="suggestion-content">
+                <strong>Learn something new</strong>
+                <span>Explore ideas and concepts</span>
+              </div>
+              <span class="suggestion-arrow">↗</span>
+            </button>
+
+            <button class="suggestion-card" data-prompt="Help me build a creative and interesting website project.">
+              <div class="suggestion-icon blue">⌘</div>
+              <div class="suggestion-content">
+                <strong>Build something</strong>
+                <span>Turn ideas into reality</span>
+              </div>
+              <span class="suggestion-arrow">↗</span>
+            </button>
+
+            <button class="suggestion-card" data-prompt="Give me five unique and creative YouTube video ideas.">
+              <div class="suggestion-icon pink">✳</div>
+              <div class="suggestion-content">
+                <strong>Get creative</strong>
+                <span>Discover fresh inspiration</span>
+              </div>
+              <span class="suggestion-arrow">↗</span>
+            </button>
+
+            <button class="suggestion-card" data-prompt="Help me understand a difficult topic step by step.">
+              <div class="suggestion-icon orange">◇</div>
+              <div class="suggestion-content">
+                <strong>Understand anything</strong>
+                <span>Break down complex topics</span>
+              </div>
+              <span class="suggestion-arrow">↗</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- CHAT MESSAGES -->
+        <section class="messages-container hidden" id="messagesContainer"></section>
+
+      </div>
+
+      <!-- INPUT AREA -->
+      <footer class="composer-area">
+        <div class="composer-wrapper">
+
+          <div class="composer-box">
+            <textarea
+              id="messageInput"
+              placeholder="Message NOVA..."
+              rows="1"
+              maxlength="12000"
+              aria-label="Message NOVA"
+            ></textarea>
+
+            <div class="composer-bottom">
+              <div class="composer-tools">
+                <button class="tool-btn" id="attachBtn" title="Attach file" aria-label="Attach file">＋</button>
+                <input type="file" id="fileInput" hidden>
+                <span class="composer-divider"></span>
+                <span class="composer-hint">Ask anything, explore everything.</span>
+              </div>
+
+              <div class="composer-actions">
+                <button class="icon-btn mic-btn" id="voiceBtn" title="Voice input (coming soon)" aria-label="Voice input">♩</button>
+                <button class="send-btn" id="sendButton" aria-label="Send message">
+                  <span>↑</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="attachment-preview hidden" id="attachmentPreview">
+            <span id="attachmentName"></span>
+            <button id="removeAttachment" aria-label="Remove attachment">✕</button>
+          </div>
+
+          <p class="disclaimer">
+            NOVA AI is in preview. Responses may be inaccurate. Verify important information.
+          </p>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
