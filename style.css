@@ -1002,6 +1002,144 @@ body.light .orb-core {
     backdrop-filter: blur(3px);
   }
 
+/* =========================================
+   NOVA AI — PREMIUM AMBIENT UI UPGRADE
+========================================= */
+
+/* Animated ambient background */
+body {
+    background: #080812;
+}
+
+.app-shell {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+/* Large atmospheric light blobs */
+.app-shell::before {
+    content: "";
+    position: fixed;
+    inset: -30%;
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(ellipse at 18% 25%,
+            rgba(116, 72, 255, 0.20), transparent 35%),
+        radial-gradient(ellipse at 80% 20%,
+            rgba(0, 190, 255, 0.13), transparent 32%),
+        radial-gradient(ellipse at 65% 85%,
+            rgba(190, 60, 255, 0.15), transparent 38%);
+
+    filter: blur(55px);
+    animation: novaAmbientMove 18s ease-in-out infinite alternate;
+}
+
+/* Subtle moving light */
+.app-shell::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(circle at 50% 50%,
+            rgba(255, 255, 255, 0.025), transparent 65%);
+
+    opacity: 0.7;
+    animation: novaAmbientPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes novaAmbientMove {
+    0% {
+        transform: translate3d(-2%, -1%, 0) scale(1);
+    }
+    50% {
+        transform: translate3d(3%, 2%, 0) scale(1.08);
+    }
+    100% {
+        transform: translate3d(-1%, 4%, 0) scale(1.03);
+    }
+}
+
+@keyframes novaAmbientPulse {
+    from { opacity: 0.35; }
+    to { opacity: 0.85; }
+}
+
+/* Premium glass sidebar */
+.sidebar {
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    background: rgba(13, 13, 27, 0.78);
+    border-right: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Premium topbar */
+.topbar {
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    background: rgba(10, 10, 22, 0.55);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+/* Glass chat composer */
+.composer-area {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+/* Smooth interactive elements */
+button,
+.pressable,
+.suggestion-card,
+.model-selector {
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+/* Subtle hover lift */
+button:hover,
+.suggestion-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Premium message entrance */
+.messages-container > * {
+    animation: novaMessageEnter 0.35s ease both;
+}
+
+@keyframes novaMessageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(9px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .app-shell::before,
+    .app-shell::after,
+    .messages-container > * {
+        animation: none !important;
+    }
+
+    button,
+    .suggestion-card {
+        transition: none !important;
+    }
+}
+
   .topbar {
     padding: 0 13px;
     height: 58px;
